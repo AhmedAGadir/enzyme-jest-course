@@ -9,6 +9,7 @@ import Input from './Input';
  * @returns {ShallowWrapper}
  * */
 const setup = (props = {}) => {
+
     return shallow(<Input {...props} />);
 };
 
