@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import Congrats from './Congrats';
 import { findByTestAttr } from '../test/testUtils';
 
-const defaultProps = { success: false };
 /** 
  * Factory function to create a ShallowWrapper for the Congrats component.
  * @function setup
@@ -11,8 +10,7 @@ const defaultProps = { success: false };
  * @returns {ShallowWrapper}
  * */
 const setup = (props = {}) => {
-    const setupProps = { ...defaultProps, ...props }
-    return shallow(<Congrats {...setupProps} />);
+    return shallow(<Congrats {...props} />);
 };
 
 test('renders without error', () => {
