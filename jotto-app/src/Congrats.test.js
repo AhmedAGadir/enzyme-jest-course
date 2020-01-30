@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Congrats from './Congrats';
-import { findByTestAttr } from '../test/testUtils';
+import { findByTestAttr } from './test/testUtils';
 
 /** 
  * Factory function to create a ShallowWrapper for the Congrats component.
