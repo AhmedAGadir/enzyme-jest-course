@@ -35,4 +35,15 @@ describe('getSecretWord calls', () => {
     // check to see if secret word was updated
     expect(mockGetSecretWord).toHaveBeenCalled();
   });
+  test('secretWord does not update on App update', () => {
+    const wrapper = setup();
+    // were clearing the mock function because we expect it to get called once, on mount
+    // we want to test that it doesnt get called again on updating
+    mockGetSecretWord.mockClear();
+    // the enzyme method .update() doesnt run useEffect atm, its a bug 
+    // so instead well use .setProps
+    wrapper.setProps();
+
+    expect(mockGetSecretWord).not.toHaveBeenCalled();
+  });
 })

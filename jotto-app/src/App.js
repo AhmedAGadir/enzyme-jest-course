@@ -35,6 +35,7 @@ function App() {
     dispatch({ type: 'setSecretWord', payload: secretWord });
   }
 
+  // we only want to get the secret word when the component mounts, not whenever the component updates
   React.useEffect(
     () => { hookActions.getSecretWord(setSecretWord) },
     []
