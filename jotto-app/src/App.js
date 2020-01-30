@@ -5,6 +5,8 @@ import GuessedWords from './GuessedWords';
 import Congrats from './Congrats';
 import hookActions from './actions/hookActions';
 
+import Input from './Input';
+
 /**
  * reducer to update state
  * @param {object} state - existing state
@@ -41,9 +43,21 @@ function App() {
     []
   )
 
+  if (!state.secretWord) {
+    return (
+      <div className="container" data-test="spinner">
+        <div className="spinner-border text-primary" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+        <p>Loading secret word</p>
+      </div>
+    )
+  }
+
   return (
     <div data-test="component-app" className="container">
       <h1>Jotto</h1>
+      <Input secretWord={state.secretWord} />
       <Congrats success={true} />
       <GuessedWords guessedWords={[
         { guessedWord: 'train', letterMatchCount: 2 }
