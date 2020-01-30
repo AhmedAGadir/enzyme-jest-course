@@ -15,7 +15,10 @@ function Input(props) {
                     onChange={event => setCurrentGuess(event.target.value)} />
                 <button
                     data-test="submit-button"
-                    onClick={e => e.preventDefault()}
+                    onClick={(evt) => {
+                        evt.preventDefault();
+                        setCurrentGuess('')
+                    }}
                     className="btn btn-primary mb-2"
                 >Submit</button>
             </form>
