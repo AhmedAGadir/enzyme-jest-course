@@ -7,6 +7,9 @@ import hookActions from './actions/hookActions';
 
 import Input from './Input';
 
+import languageContext from './contexts/languageContext';
+import LanguagePicker from './LanguagePicker';
+
 /**
  * reducer to update state
  * @param {object} state - existing state
@@ -17,9 +20,10 @@ import Input from './Input';
 function reducer(state, action) {
   const { type, payload } = action;
   switch (type) {
-    case 'setSecretWord': {
+    case 'setSecretWord':
       return { ...state, secretWord: payload };
-    }
+    case 'setLanguage':
+      return { ...state, language: payload }
     default: {
       throw new Error(`Invalid action type: ${type}`);
     }
@@ -35,6 +39,10 @@ function App() {
 
   const setSecretWord = secretWord => {
     dispatch({ type: 'setSecretWord', payload: secretWord });
+  }
+
+  const setLanguage = language => {
+    dispatch({ type: 'setSecretWord', payload: language });
   }
 
   // we only want to get the secret word when the component mounts, not whenever the component updates
@@ -57,6 +65,11 @@ function App() {
   return (
     <div data-test="component-app" className="container">
       <h1>Jotto</h1>
+      {/* anywhere within this element, the language context value can be reached
+      and anytime the value changes, the children will be re-rendered */}
+      <languageContext.Provider value={state.language}>
+        <LanguagePicker setLanguage={setLanguage} />
+      </languageContext.Provider>
       <Input secretWord={state.secretWord} />
       <Congrats success={true} />
       <GuessedWords guessedWords={[
